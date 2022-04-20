@@ -5,6 +5,9 @@ import configuration from './config/configuration'
 import { AdminModule } from './module/admin/admin.module'
 import { AuthModule } from './module/auth/auth.module'
 import { UserModule } from './module/user/user.module'
+import { MailModule } from './module/mail/mail.module'
+import { MailerModule } from '@nestjs-modules/mailer'
+import { getMailConfig } from './module/mail/mail.config'
 
 @Module({
     imports: [
@@ -20,6 +23,7 @@ import { UserModule } from './module/user/user.module'
                 port: +configService.get<number>('database.port'),
                 username: configService.get<string>('database.username'),
                 password: configService.get<string>('database.password'),
+                database: configService.get<string>('database.name'),
                 synchronize: true,
                 autoLoadEntities: true,
             }),
@@ -28,6 +32,12 @@ import { UserModule } from './module/user/user.module'
         UserModule,
         AuthModule,
         AdminModule,
+        MailModule,
+        MailerModule.forRootAsync({
+            imports: [ConfigModule],
+            inject: [ConfigService],
+            useFactory: getMailConfig,
+        }),
     ],
 })
 export class AppModule {}

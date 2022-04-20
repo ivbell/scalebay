@@ -1,0 +1,27 @@
+{
+    "name": "scalebay",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "node": "npm i & cd server & npm i & cd ../web & npm i",
+        "server:dev": "cd server & npm run start:dev",
+        "web:dev": "cd web & npm run dev",
+        "dev": "concurrently \"npm run server:dev\" \"npm run web:dev\"",
+        "admin:create": "cd server & node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ivbell/scalebay.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ivbell/scalebay/issues"
+    },
+    "homepage": "https://github.com/ivbell/scalebay#readme",
+    "dependencies": {
+        "concurrently": "^7.1.0"
+    }
+}
